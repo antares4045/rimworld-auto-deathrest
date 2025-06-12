@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ModMetaData>
-	<name>Slurmpy's Auto-Deathrest (1.5)</name>
-	<author>Slurmpy, MarximusMaximus</author>
+	<name>Slurmpy's Auto-Deathrest (1.5, 1.6)</name>
+	<author>MarximusMaximus, Slurmpy</author>
 	<packageId>marximus.AutoDeathrest</packageId>
-	<modVersion>v1.0.1</modVersion>
-	<url>https://github.com/MarximusMaximus/SlurmpysAutoDeathrest</url>
-	<description>
-Temporary version?
-
-This mod forces pawns to auto-deathrest when it hits a defined threshold.
-
-The threshold can be edited in the mod settings.
-
-This is my first mod ever for RimWorld. It shouldn't have any incompatibilities but if you find any errors/bugs/incompatibilities please let me know.
-
-Changes to OG:
-Recompiled/repackaged for 1.5. (If the OG updates, let me know so I can remove this one.)
-Modified solution file for easier maintenance of other files.
-git-ified the project
-Added a version number
-
-Original Mod: https://steamcommunity.com/sharedfiles/filedetails/?id=3066900301
-	</description>
+	<modVersion>v1.0.2</modVersion>
+	<url>https://github.com/MarximusMaximus/rimworld-auto-deathrest</url>
 	<supportedVersions>
 		<li>1.4</li>
 		<li>1.5</li>
+		<li>1.6</li>
 	</supportedVersions>
+	<description>
+This mod forces pawns to auto-deathrest when it hits a defined threshold.
+The threshold can be edited in the mod settings.
+
+- Mod Source: https://github.com/MarximusMaximus/rimworld-auto-deathrest
+- Original Author: Slurmpy
+- Original Mod: https://steamcommunity.com/sharedfiles/filedetails/?id=3066900301
+
+Changes to OG:
+ - Recompiled/repackaged for 1.5, 1.6.
+ - Modified solution file for easier maintenance of other files.
+ - git-ified the project
+ - Added a version number
+
+Links
+- Main Website: https://teammerryshark.com
+- Patreon (On Going Support): https://www.patreon.com/teammerryshark
+- Ko-fi (On Going/One Time Support): https://ko-fi.com/teammerryshark
+	</description>
+
 </ModMetaData>
