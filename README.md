@@ -1,14 +1,19 @@
-Temporary version?
+# rimworld-auto-deathrest Slurmpy's Auto-Deathrest
 
 This mod forces pawns to auto-deathrest when it hits a defined threshold.
-
 The threshold can be edited in the mod settings.
 
-This is my first mod ever for RimWorld. It shouldn't have any incompatibilities but if you find any errors/bugs/incompatibilities please let me know.
+- Mod Source: https://github.com/MarximusMaximus/rimworld-auto-deathrest
+- Original Author: Slurmpy
+- Original Mod: https://steamcommunity.com/sharedfiles/filedetails/?id=3066900301
 
 Changes to OG:
-Recompiled/repackaged for 1.5. (If the OG updates, let me know so I can remove this one.)
-Modified solution file for easier maintenance of other files.
-git-ified the project 
+ - Recompiled/repackaged for 1.5, 1.6.
+ - Modified solution file for easier maintenance of other files.
+ - git-ified the project
+ - Added a version number
 
-Original Mod: https://steamcommunity.com/sharedfiles/filedetails/?id=3066900301
+Links
+- Main Website: https://teammerryshark.com
+- Patreon (On Going Support): https://www.patreon.com/teammerryshark
+- Ko-fi (On Going/One Time Support): https://ko-fi.com/teammerryshark
