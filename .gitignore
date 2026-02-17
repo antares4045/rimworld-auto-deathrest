@@ -1,5 +1,6 @@
 Assemblies/*.pdb
 Assemblies/*.xml
+*/Assemblies/*.deps.json
 .vs/
 obj/
 bin/
