@@ -58,7 +58,7 @@ namespace SlurmpysAutoDeathrest
 
                 // Try to find a bed for the pawn
                 Building_Bed bed = FindDeathrestCasketFor(pawn);
-                if (bed != null && pawn.CanReach(bed, PathEndMode.Touch, Danger.Deadly))
+                if (bed != null && pawn.CanReach(bed, PathEndMode.Touch, Danger.Deadly) && !bed.Position.InSunlight(bed.Map))
                 {
                     notifiedPawns.Remove(pawn);
                     /*Log.Message(pawn + " is using this bed: " + bed);
@@ -69,7 +69,6 @@ namespace SlurmpysAutoDeathrest
                     }
 
                     pawn.ownership.ClaimDeathrestCasket(bed);  // Assign the current pawn as the sole owner*/
-
                     return JobMaker.MakeJob(JobDefOf.Deathrest, bed);
                 }
 
@@ -83,8 +82,41 @@ namespace SlurmpysAutoDeathrest
             return null;
         }
 
+        private static bool IsValidTarget(Thing target, Pawn pawn)
+        {
+            if (target == null || !target.Spawned || target.Destroyed) 
+                return false;
+
+            if (target.Map != pawn.Map)
+                return false;
+
+            if (target.IsForbidden(pawn))
+                return false;
+
+            // if(pawn.CanReach(target, PathEndMode.Touch, Danger.Deadly))
+            //     return false;
+
+            return true;
+        }
+
         private Building_Bed FindDeathrestCasketFor(Pawn pawn)
         {
+            if(ChachedBeds == null)
+                ChachedBeds = new Dictionary<Pawn, Building_Bed>();
+            if (ChachedBeds.ContainsKey(pawn))
+            {
+                Building_Bed bed = ChachedBeds[pawn];
+                if(IsValidTarget(bed as Thing, pawn))
+                {
+                    return ChachedBeds[pawn];
+                }
+                // else
+                // {
+                //     Messages.Message(pawn.Name + "'s Deathrest Casket lost or forbidden", MessageTypeDefOf.NegativeEvent, true);
+                // }
+            }
+
+            Building_Bed possibleBed = null;
             foreach (Thing thing in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
             {
                 Building_Bed bed = thing as Building_Bed;
@@ -96,22 +128,34 @@ namespace SlurmpysAutoDeathrest
 
                 if (Settings.CasketsList.Contains(bed.def.ToString()) && !bed.Position.InSunlight(bed.Map))
                 {
-                    if (bed.OwnersForReading.Count > 0 && !bed.OwnersForReading.Contains(pawn))
+                    if (bed.OwnersForReading.Count > 0)
                     {
-                        continue;
+                        if (bed.OwnersForReading.Contains(pawn))
+                        {
+                            ChachedBeds[pawn] = bed;
+                            return bed;
+                        }else
+                        {
+                            continue;
+                        }
                     }
 
                     // Check if the bed isn't reserved or can be reserved by the pawn
                     //if (pawn.CanReserve(bed, bed.SleepingSlotsCount))
                     if (pawn.CanReserve(bed, 1))
                     {
-                        return bed;
+                        possibleBed = bed;
                     }
                 }
             }
-            return null;
+
+            if(possibleBed != null)
+                ChachedBeds[pawn] = possibleBed;
+
+            return possibleBed;
         }
 
         private HashSet<Pawn> notifiedPawns = new HashSet<Pawn>();
+        private static Dictionary<Pawn, Building_Bed> ChachedBeds;
     }
 }
