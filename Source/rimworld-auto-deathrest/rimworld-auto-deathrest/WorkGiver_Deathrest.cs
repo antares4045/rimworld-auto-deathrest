@@ -58,7 +58,7 @@ namespace SlurmpysAutoDeathrest
 
                 // Try to find a bed for the pawn
                 Building_Bed bed = FindDeathrestCasketFor(pawn);
-                if (bed != null && bed.def.ToString() == "DeathrestCasket" && pawn.CanReach(bed, PathEndMode.Touch, Danger.Deadly))
+                if (bed != null && pawn.CanReach(bed, PathEndMode.Touch, Danger.Deadly))
                 {
                     notifiedPawns.Remove(pawn);
                     /*Log.Message(pawn + " is using this bed: " + bed);
@@ -94,7 +94,7 @@ namespace SlurmpysAutoDeathrest
                     continue;
                 }
 
-                if (bed.def.ToString() == "DeathrestCasket" && !bed.Position.InSunlight(bed.Map))
+                if (Settings.CasketsList.Contains(bed.def.ToString()) && !bed.Position.InSunlight(bed.Map))
                 {
                     if (bed.OwnersForReading.Count > 0 && !bed.OwnersForReading.Contains(pawn))
                     {
